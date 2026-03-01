@@ -1,0 +1,26 @@
+---
+description: When to use orchestrator, task, and QA skills for agentic workflows on this repo
+globs: "**/*"
+alwaysApply: false
+---
+
+# Agentic workflow (Habit Garden)
+
+For multi-step or multi-file work on this project, use the personal agentic skills so work stays structured and reviewable.
+
+## When to use orchestrator skill
+
+- **Multi-file refactors** — Use the agentic-orchestrator skill; consider parallel explore or generalPurpose subagents for independent subtasks (e.g. find all usages, then apply changes).
+- **Broad discovery** — When you need to "find where X is" or "understand how Y is wired" across frontend/backend, use the Task tool with **explore** subagent and a clear thoroughness level.
+- **Shell operations** — Git, npm, docker compose, or migrations: delegate to **shell** subagent when the step is terminal-heavy.
+
+## When to use QA skill
+
+- After implementing a feature or a batch of related changes, run a QA pass (same agent with agentic-qa skill or a generalPurpose "review" subagent) before marking the task done.
+- For PRs or pre-merge checks, use the QA checklist (correctness, tests, style, side effects) and return a short pass/fail report.
+
+## Related skills (personal)
+
+- **ai-engineering-patterns** — HRA/ARROA patterns (Planner, Actor, Reflector; task queue).
+- **agentic-orchestrator** — When to delegate and which subagent type (explore, generalPurpose, shell).
+- **agentic-qa** — QA checklist and report format; when to run a dedicated review pass.

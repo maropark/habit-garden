@@ -1,1 +1,12 @@
-node_modules/
+# dependencies
+frontend/node_modules/
+
+# build output
+frontend/dist/
+frontend/.vite/
+frontend/.turbo/
+
+# misc
+frontend/.env
+frontend/.DS_Store
+frontend/package-lock.json
