@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { gardenApi, TodayHabit, habitsApi } from '../services';
+import { AddHabitForm } from './AddHabitForm';
 
 const PLANT_EMOJIS: Record<string, string> = {
   sunflower: '🌻',
@@ -25,6 +26,7 @@ export const TodayChecklist: React.FC = () => {
   const [habits, setHabits] = useState<TodayHabit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const loadHabits = async () => {
     try {
@@ -83,6 +85,10 @@ export const TodayChecklist: React.FC = () => {
         </p>
       </div>
 
+      <button onClick={() => setShowAddForm(true)} style={styles.addButton}>
+        + Plant a New Seed
+      </button>
+
       <div style={styles.habitsList}>
         {habits.length === 0 ? (
           <p style={styles.empty}>No habits yet. Plant some seeds! 🌱</p>
@@ -126,6 +132,13 @@ export const TodayChecklist: React.FC = () => {
           <p>🎉 All plants watered today! Your garden is thriving!</p>
         </div>
       )}
+
+      {showAddForm && (
+        <AddHabitForm
+          onClose={() => setShowAddForm(false)}
+          onAdded={loadHabits}
+        />
+      )}
     </div>
   );
 };
@@ -152,6 +165,19 @@ const styles: Record<string, React.CSSProperties> = {
   progress: {
     color: '#6b8e23',
     fontWeight: 600,
+  },
+  addButton: {
+    display: 'block',
+    width: '100%',
+    padding: '0.75rem',
+    marginBottom: '1rem',
+    borderRadius: '0.75rem',
+    border: '2px dashed #90BE6D',
+    backgroundColor: 'rgba(144, 190, 109, 0.1)',
+    color: '#6b8e23',
+    fontWeight: 600,
+    cursor: 'pointer',
+    fontSize: '1rem',
   },
   habitsList: {
     display: 'flex',
