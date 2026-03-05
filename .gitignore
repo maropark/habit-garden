@@ -8,6 +8,10 @@ frontend/.turbo/
 
 # Python / Backend
 backend/__pycache__/
+backend/app/api/__pycache__/
+backend/app/models/__pycache__/
+backend/app/schemas/__pycache__/
+backend/app/services/__pycache__/
 backend/*.py[cod]
 backend/*$py.class
 backend/.venv/
