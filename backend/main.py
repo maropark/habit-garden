@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import init_db
-from app.api import habits, garden
+from app.api import habits, garden, tags
 
 app = FastAPI(title="Habit Garden API")
 
@@ -16,6 +16,7 @@ app.add_middleware(
 
 app.include_router(habits.router)
 app.include_router(garden.router)
+app.include_router(tags.router)
 
 
 @app.on_event("startup")
