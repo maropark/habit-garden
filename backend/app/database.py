@@ -23,3 +23,18 @@ def get_db():
 def init_db():
     from app.models import User, Habit, HabitLog, JournalEntry, Tag, HabitTag
     Base.metadata.create_all(bind=engine)
+    
+    db = SessionLocal()
+    try:
+        existing_user = db.query(User).filter(User.id == 1).first()
+        if not existing_user:
+            default_user = User(
+                id=1,
+                username="garden_keeper",
+                password_hash="temp_password_hash"
+            )
+            db.add(default_user)
+            db.commit()
+            print("Created default user (id=1)")
+    finally:
+        db.close()
