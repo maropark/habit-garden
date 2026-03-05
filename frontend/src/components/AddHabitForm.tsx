@@ -28,8 +28,8 @@ export const AddHabitForm: React.FC<AddHabitFormProps> = ({ onClose, onAdded }) 
       await habitsApi.create({
         name,
         description: description || undefined,
-        plant_type: plantType,
-        plant_color: plantColor,
+        plant_type: plantType.toLowerCase() as any,
+        plant_color: plantColor.toLowerCase() as any,
         is_binary: isBinary,
         quantity_target: quantityTarget,
       });
