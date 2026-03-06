@@ -1,26 +1,51 @@
 import React, { useState } from 'react';
-import { GardenToday } from './components/garden/GardenToday';
+import { TodayChecklist } from './components/TodayChecklist';
 import { CalendarView } from './components/CalendarView';
 
 type View = 'today' | 'calendar';
 
 const App: React.FC = () => {
-  const [view, setView] = useState<'today' | 'calendar'>('today');
+  const [view, setView] = useState<View>('today');
 
   return (
-    <div style={styles.container}>
-      <header style={styles.header}>
-        <div style={styles.titleArea}>
-          <h1 style={styles.title}>🌱 ARROA</h1>
-          <p style={styles.subtitle}>Your Habit Garden</p>
-        </div>
+    <div
+      style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #fdf6ec 0%, #f3e7dd 40%, #e8f0e4 100%)',
+        fontFamily: '"Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+        color: '#4a3b2e',
+        paddingBottom: '5rem',
+      }}
+    >
+      <header
+        style={{
+          textAlign: 'center',
+          padding: '1.5rem',
+        }}
+      >
+        <h1 style={{ fontSize: '2rem', marginBottom: '0.25rem' }}>🌱 Habit Garden</h1>
+        <p style={{ color: '#8b7355', marginBottom: '1rem' }}>
+          A cozy cottage-core habit space
+        </p>
         
-        <nav style={styles.nav}>
+        <nav
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '0.5rem',
+          }}
+        >
           <button
             onClick={() => setView('today')}
             style={{
-              ...styles.navButton,
-              ...(view === 'today' ? styles.navButtonActive : {}),
+              padding: '0.5rem 1.25rem',
+              borderRadius: '1rem',
+              border: 'none',
+              cursor: 'pointer',
+              fontWeight: 600,
+              backgroundColor: view === 'today' ? '#90BE6D' : 'rgba(255, 255, 255, 0.7)',
+              color: '#4a3b2e',
+              transition: 'all 0.2s ease',
             }}
           >
             🌸 Today
@@ -28,8 +53,14 @@ const App: React.FC = () => {
           <button
             onClick={() => setView('calendar')}
             style={{
-              ...styles.navButton,
-              ...(view === 'calendar' ? styles.navButtonActive : {}),
+              padding: '0.5rem 1.25rem',
+              borderRadius: '1rem',
+              border: 'none',
+              cursor: 'pointer',
+              fontWeight: 600,
+              backgroundColor: view === 'calendar' ? '#90BE6D' : 'rgba(255, 255, 255, 0.7)',
+              color: '#4a3b2e',
+              transition: 'all 0.2s ease',
             }}
           >
             📅 Calendar
@@ -37,69 +68,11 @@ const App: React.FC = () => {
         </nav>
       </header>
 
-      <main style={styles.main}>
-        {view === 'today' ? <GardenToday /> : <CalendarView />}
+      <main>
+        {view === 'today' ? <TodayChecklist /> : <CalendarView />}
       </main>
     </div>
   );
-};
-
-const styles: Record<string, React.CSSProperties> = {
-  container: {
-    minHeight: '100vh',
-    fontFamily: "'Courier New', monospace",
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '16px 24px',
-    backgroundColor: 'rgba(30, 50, 30, 0.95)',
-    borderBottom: '3px solid #3d5c32',
-    position: 'sticky',
-    top: 0,
-    zIndex: 50,
-  },
-  titleArea: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  title: {
-    fontSize: '24px',
-    margin: 0,
-    color: '#C5E1A5',
-    letterSpacing: '3px',
-  },
-  subtitle: {
-    fontSize: '12px',
-    color: '#8BC34A',
-    margin: 0,
-    letterSpacing: '1px',
-  },
-  nav: {
-    display: 'flex',
-    gap: '8px',
-  },
-  navButton: {
-    padding: '8px 16px',
-    borderRadius: '8px',
-    border: '2px solid #4a7c3f',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    backgroundColor: 'rgba(45, 74, 34, 0.8)',
-    color: '#AED581',
-    fontFamily: "'Courier New', monospace",
-    fontSize: '14px',
-    transition: 'all 0.2s ease',
-  },
-  navButtonActive: {
-    backgroundColor: '#4CAF50',
-    color: '#fff',
-    borderColor: '#66BB6A',
-  },
-  main: {
-    minHeight: 'calc(100vh - 80px)',
-  },
 };
 
 export default App;
