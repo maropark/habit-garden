@@ -6,6 +6,14 @@
 - **Stack:** React+TS (frontend), FastAPI (backend), PostgreSQL (database)
 - **Users:** 2 primary users (local-first, private)
 
+## Version Constraints (DO NOT CHANGE without permission)
+- **Node.js:** 18.x - Required for this environment
+- **Vite:** 5.x - Vite 7.x requires Node.js 20.19+, do NOT upgrade to 6.x or 7.x without asking
+- **Python:** 3.11
+- **PostgreSQL:** 16
+
+> **IMPORTANT:** Before updating any dependency to a new major version, you MUST ask for permission. Explain why the upgrade is necessary and what breaking changes it introduces.
+
 ## Framework: ARROA + HRA
 
 ### Roles
