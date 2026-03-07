@@ -42,6 +42,18 @@ docker-compose up --build
 
 ---
 
+## API Configuration
+
+### Environment Variables for Docker
+- `VITE_API_URL`: Frontend API base URL (use `http://backend:8000/api` in Docker)
+- `DATABASE_URL`: Backend database connection (use `postgresql://` not `postgres://`)
+
+### CORS
+- When running in Docker, add Docker network IPs to backend CORS allow_origins
+- Example: `allow_origins=["http://localhost:5173", "http://172.18.0.0/16"]`
+
+---
+
 ## Key Files
 
 - `frontend/src/App.tsx` - Main app component
@@ -66,8 +78,9 @@ docker-compose up --build
 
 ### Blank white page on frontend
 - Check browser console for errors
-- Likely cause: Node/Vite version mismatch
+- Likely cause: Node/Vite version mismatch (see Version Constraints)
 - Run `npm run build` locally to verify
+- If using Docker: rebuild with `docker-compose up --build`
 
 ### Database connection errors
 - Ensure PostgreSQL container is running
@@ -75,3 +88,9 @@ docker-compose up --build
 
 ### Import errors in frontend
 - Vite requires ESM. Use `import { x } from './module'` not `require()`
+
+### API calls fail in Docker ("Failed to load garden")
+- Frontend in Docker cannot reach host's localhost:8000
+- Use Docker internal network: `http://backend:8000`
+- Set `VITE_API_URL` environment variable in docker-compose.yml
+- Update CORS in backend to allow Docker network IPs
