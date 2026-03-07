@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://habit_garden:habit_garden_password@db:5432/habit_garden
+      DATABASE_URL: postgresql://habit_garden:habit_garden_password@db:5432/habit_garden
     ports:
       - "8000:8000"
     volumes:
@@ -25,6 +25,8 @@ services:
     build: ./frontend
     depends_on:
       - backend
+    environment:
+      - VITE_API_URL=http://backend:8000/api
     ports:
       - "5173:5173"
     volumes:
