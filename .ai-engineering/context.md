@@ -14,6 +14,12 @@
 
 > **IMPORTANT:** Before updating any dependency to a new major version, you MUST ask for permission. Explain why the upgrade is necessary and what breaking changes it introduces.
 
+## Docker Configuration (Critical)
+- Frontend API calls must use `http://backend:8000` (not `localhost:8000`)
+- Set `VITE_API_URL` in docker-compose.yml for frontend
+- CORS must allow Docker network IPs (e.g., `http://172.18.0.0/16`)
+- Use `postgresql://` not `postgres://` in DATABASE_URL
+
 ## Framework: ARROA + HRA
 
 ### Roles
