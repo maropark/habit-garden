@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://habit_garden:habit_garden_password@db:5432/habit_garden
+      DATABASE_URL: postgresql://habit_garden:habit_garden_password@db:5432/habit_garden
     ports:
       - "8000:8000"
     volumes:
