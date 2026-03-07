@@ -7,14 +7,15 @@ const PLANT_COLORS = ['YELLOW', 'PINK', 'RED', 'WHITE', 'PURPLE', 'ORANGE', 'BLU
 interface AddHabitFormProps {
   onClose: () => void;
   onAdded: () => void;
+  defaultIsBinary?: boolean;
 }
 
-export const AddHabitForm: React.FC<AddHabitFormProps> = ({ onClose, onAdded }) => {
+export const AddHabitForm: React.FC<AddHabitFormProps> = ({ onClose, onAdded, defaultIsBinary = true }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [plantType, setPlantType] = useState<keyof typeof PlantTypeEnum>('SUNFLOWER');
   const [plantColor, setPlantColor] = useState<keyof typeof PlantColorEnum>('YELLOW');
-  const [isBinary, setIsBinary] = useState(true);
+  const [isBinary, setIsBinary] = useState(defaultIsBinary);
   const [quantityTarget, setQuantityTarget] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
