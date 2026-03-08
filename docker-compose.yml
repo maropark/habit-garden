@@ -22,7 +22,10 @@ services:
       - ./backend:/app
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:8000/api
     depends_on:
       - backend
     environment:

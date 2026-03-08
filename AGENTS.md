@@ -49,8 +49,16 @@ docker-compose up --build
 - `DATABASE_URL`: Backend database connection (use `postgresql://` not `postgres://`)
 
 ### CORS
-- When running in Docker, add Docker network IPs to backend CORS allow_origins
-- Example: `allow_origins=["http://localhost:5173", "http://172.18.0.0/16"]`
+The frontend and backend run in Docker with these hostnames:
+- Frontend: `http://frontend:5173`
+- Backend: `http://backend:8000`
+
+The backend (`backend/main.py`) must allow both:
+- `http://localhost:5173` - for local development
+- `http://frontend:5173` - for Docker development
+- Docker network IPs (e.g., `http://172.18.0.0/16`)
+
+If you add new frontend origins, update `allow_origins` in `backend/main.py`.
 
 ---
 
