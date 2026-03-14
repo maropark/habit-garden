@@ -95,7 +95,7 @@ export const DatePlaque: React.FC<DatePlaqueProps> = ({ date }) => {
           fontFamily="'Courier New', monospace"
           letterSpacing="2"
         >
-          {date.toLocaleDateString('en-US', { weekday: 'uppercase' })}
+          {date.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase()}
         </text>
 
         <text
